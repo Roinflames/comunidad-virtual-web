@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comunidad Virtual | Sistemas que venden y escalan</title>
+  <meta name="description" content="Desarrollo web, automatización e integraciones para empresas que necesitan ordenar su operación y vender más." />
+  <style>
+    @font-face { font-family: "Aileron"; src: url("./Aileron-Regular.otf") format("opentype"); font-display: swap; }
+    @font-face { font-family: "AileronBold"; src: url("./Aileron-Bold.otf") format("opentype"); font-display: swap; }
+
+    :root {
+      --bg: #0c1227;
+      --panel: #121a37;
+      --panel-2: #18234a;
+      --line: #2b396f;
+      --ink: #e9efff;
+      --muted: #a8b5de;
+      --primary: #5aa8d8;
+      --accent: #e73a8c;
+      --ok: #5be3b0;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "Aileron", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% -8%, #2a3b79 0%, rgba(42,59,121,0) 38%),
+        radial-gradient(circle at 85% 0%, #4a1f58 0%, rgba(74,31,88,0) 32%),
+        var(--bg);
+      line-height: 1.5;
+    }
+
+    .container { width: min(1140px, 92vw); margin: 0 auto; }
+
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(12, 18, 39, 0.72);
+      border-bottom: 1px solid rgba(90, 168, 216, 0.2);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: .9rem 0; }
+    .logo { font-family: "AileronBold", sans-serif; letter-spacing: .3px; }
+    .logo b { color: var(--primary); }
+    .logo span { color: var(--accent); }
+    .nav a { color: var(--muted); text-decoration: none; margin-left: 1rem; font-size: .95rem; }
+
+    .hero {
+      padding: 6rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 1.3rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid rgba(91, 227, 176, .3);
+      color: var(--ok);
+      padding: .3rem .55rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: "AileronBold", sans-serif;
+      font-size: clamp(2.1rem, 5vw, 4.3rem);
+      line-height: 1.03;
+      margin: .7rem 0 .9rem;
+      max-width: 18ch;
+    }
+
+    .lead { color: var(--muted); max-width: 56ch; }
+    .cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.35rem; }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 700;
+      padding: .76rem 1.1rem; border-radius: 12px; transition: .2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(120deg, var(--primary), #6ac4ff); color: #07122f; }
+    .btn-alt { border-color: var(--line); color: var(--ink); background: rgba(255,255,255,.02); }
+
+    .hero-card {
+      background: linear-gradient(165deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1.1rem;
+    }
+    .hero-card h3 { margin: .2rem 0 .6rem; color: #dff2ff; }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+    .kpis div { background: #0f1734; border: 1px solid #2a3a75; border-radius: 12px; padding: .75rem; }
+    .kpis strong { display: block; color: var(--primary); font-size: 1.28rem; }
+    .kpis span { color: var(--muted); font-size: .88rem; }
+
+    section { padding: 2.5rem 0; }
+    .title { font-family: "AileronBold", sans-serif; font-size: clamp(1.5rem, 3vw, 2.4rem); margin: 0 0 .4rem; }
+    .sub { margin: 0 0 1.2rem; color: var(--muted); }
+
+    .pain-solution { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .box { border: 1px solid var(--line); border-radius: 14px; padding: 1rem; background: var(--panel); }
+    .box h3 { margin-top: 0; }
+    .box ul { margin: 0; padding-left: 1rem; color: var(--muted); }
+
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
+    .service { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: .95rem; }
+    .service h4 { margin: .2rem 0 .5rem; color: #d9ebff; }
+    .service p { margin: 0; color: var(--muted); }
+
+    .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+    .step { background: var(--panel-2); border: 1px solid var(--line); border-radius: 13px; padding: .9rem; }
+    .step b { color: var(--accent); }
+
+    .faq { display: grid; gap: .6rem; }
+    details { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: .75rem .85rem; }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--muted); margin: .55rem 0 0; }
+
+    .final-cta {
+      margin-top: .8rem;
+      border: 1px solid rgba(90,168,216,.35);
+      border-radius: 18px;
+      padding: 1.25rem;
+      background: linear-gradient(130deg, rgba(90,168,216,.18), rgba(231,58,140,.13));
+    }
+
+    .contact-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .8rem; }
+    .chip { padding: .55rem .75rem; border: 1px solid rgba(255,255,255,.2); border-radius: 10px; color: var(--ink); text-decoration: none; }
+
+    footer { padding: 1.6rem 0 2rem; color: #8b9ac8; font-size: .9rem; }
+
+    @media (max-width: 950px) {
+      .hero { grid-template-columns: 1fr; padding-top: 4.4rem; }
+      .services { grid-template-columns: 1fr 1fr; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .pain-solution { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .nav nav { display: none; }
+      .services, .process { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Comunidad <b>Virtual</b> <span>●</span></div>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Partner tecnológico para crecimiento</span>
+        <h1>Menos planillas, más sistema: ordena tu operación y acelera ventas</h1>
+        <p class="lead">Construimos sitios de negocio, automatizaciones e integraciones para empresas que ya venden, pero necesitan escalar sin caos operativo.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#contacto">Quiero una propuesta</a>
+          <a class="btn btn-alt" href="#servicios">Explorar servicios</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h3>Qué conseguimos en 30-60 días</h3>
+        <div class="kpis">
+          <div><strong>Embudo claro</strong><span>de captación a cierre</span></div>
+          <div><strong>Automatización</strong><span>de tareas repetitivas</span></div>
+          <div><strong>Datos unificados</strong><span>en una sola operación</span></div>
+          <div><strong>Visibilidad real</strong><span>para decidir más rápido</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section>
+      <h2 class="title">Deja de perder oportunidades por desorden operativo</h2>
+      <p class="sub">Si ventas, atención y operaciones están desconectadas, el negocio se frena aunque haya demanda.</p>
+      <div class="pain-solution">
+        <article class="box">
+          <h3>Problemas típicos</h3>
+          <ul>
+            <li>Leads que llegan, pero no se siguen a tiempo.</li>
+            <li>Información repartida entre WhatsApp, planillas y correos.</li>
+            <li>Procesos manuales que consumen horas del equipo.</li>
+          </ul>
+        </article>
+        <article class="box">
+          <h3>Cómo lo resolvemos</h3>
+          <ul>
+            <li>Web comercial enfocada en conversión y captura calificada.</li>
+            <li>Integración de formularios, CRM y canales de contacto.</li>
+            <li>Automatizaciones que eliminan cuellos de botella.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <h2 class="title">Servicios</h2>
+      <p class="sub">Armamos soluciones según etapa y prioridad del negocio.</p>
+      <div class="services">
+        <article class="service">
+          <h4>Web comercial de alto rendimiento</h4>
+          <p>Arquitectura de contenido, propuesta de valor y CTAs para convertir visitas en reuniones comerciales.</p>
+        </article>
+        <article class="service">
+          <h4>Automatización de flujo</h4>
+          <p>Seguimiento automático de leads, alertas internas, tareas repetitivas y reportes sin carga manual.</p>
+        </article>
+        <article class="service">
+          <h4>Integración de sistemas</h4>
+          <p>Conectamos tus herramientas para que ventas, operaciones y dirección trabajen con la misma verdad.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <h2 class="title">Proceso de implementación</h2>
+      <p class="sub">Sin humo: etapas concretas, entregables claros y foco en resultado.</p>
+      <div class="process">
+        <div class="step"><b>1.</b> Diagnóstico de operación y oportunidades de mejora.</div>
+        <div class="step"><b>2.</b> Diseño de solución y plan por fases priorizadas.</div>
+        <div class="step"><b>3.</b> Implementación iterativa con validación semanal.</div>
+        <div class="step"><b>4.</b> Optimización continua basada en métricas reales.</div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="title">Preguntas frecuentes</h2>
+      <div class="faq">
+        <details>
+          <summary>¿Trabajan solo con empresas grandes?</summary>
+          <p>No. Trabajamos especialmente con pymes y equipos comerciales en crecimiento que necesitan orden y velocidad.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto demora una primera implementación?</summary>
+          <p>Dependiendo del alcance, entre 2 y 6 semanas para una primera versión funcional con impacto visible.</p>
+        </details>
+        <details>
+          <summary>¿Pueden mejorar lo que ya tenemos en vez de partir de cero?</summary>
+          <p>Sí. Podemos auditar tu stack actual y construir sobre tu base para acelerar tiempos y reducir costos.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contacto" class="final-cta">
+      <h2 class="title" style="margin-top:0;">Hablemos de tu operación real</h2>
+      <p class="sub" style="margin-bottom:.4rem;">Cuéntanos dónde se está perdiendo tiempo o ventas y te devolvemos un plan inicial accionable.</p>
+      <div class="contact-row">
+        <a class="chip" href="mailto:contacto@comunidadvirtual.cl">contacto@comunidadvirtual.cl</a>
+        <a class="chip" href="https://wa.me/56900000000" target="_blank" rel="noopener noreferrer">WhatsApp: +56 9 0000 0000</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    © <span id="y"></span> Comunidad Virtual. Tecnología aplicada a resultados de negocio.
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
